@@ -1,0 +1,40 @@
+<h1>LuckyNumbers calculator</h1>
+<div class="col-4">
+    <%= form_tag("/lucky_numbers/view", {method: "get", class: "my_form", id: "my_form"}) do %>
+        <div class="form-group">
+            <%= text_field_tag (:numbers_count),"", class: "form-control", placeholder: "Диапазон поиска счастливых чисел" %>
+        </div>
+        <%= submit_tag('Увидеть результат',  id: "submit_button", class: "btn btn-primary") %>
+    <% end %>
+
+    <div id="result" class="my_form">"Ошибка! Некорректный ввод! Введите целое число в диапазоне от 0 до 999999. "</div>
+</div>
+
+<script>
+    document.getElementById("result").style.display = "none";
+    
+    // Получаем кнопку по ее ID
+    var submitButton = document.getElementById("submit_button");
+
+    // Добавляем обработчик события нажатия на кнопку
+    submitButton.addEventListener("click", function(event) {
+      // Ваша функция, которая будет вызываться при каждом нажатии на кнопку
+      if (!checkInputData()) {
+          event.preventDefault();
+          var resultDiv = document.getElementById("result"); // иначе выводим ошибку
+          resultDiv.style.display = "";
+      }
+    });
+
+    function checkInputData() {
+        var numbersCountString = document.getElementById("numbers_count").value;
+        var numbersCount = parseInt(numbersCountString);
+
+        // условия проверки: целое число в диапазоне от 0 до 999999
+        if (!isNaN(numbersCount) && numbersCount >= 0 && numbersCount <= 999999 && (numbersCount.toString().length == numbersCountString.length)) {
+            return true; // при корректном вводе воызращаем истину
+        } else {
+            return false;
+        }
+    }
+</script>
