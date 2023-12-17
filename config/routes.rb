@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'lucky_numbers/input'
   get 'lucky_numbers/view'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

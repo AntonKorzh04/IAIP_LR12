@@ -2,8 +2,11 @@ require "test_helper"
 
 class LuckyNumbersControllerTest < ActionDispatch::IntegrationTest
   test "should get input" do
+    user = User.create(email: 'example_test@example.com', encrypted_password: 'password_test')
+    sign_in user
     get lucky_numbers_input_url
     assert_response :success
+    assert_equal 'example_test@example.com', current_user.email
   end
 
   test "should get view" do

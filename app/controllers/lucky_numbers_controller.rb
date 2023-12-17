@@ -1,8 +1,10 @@
 require 'json'
 
 class LuckyNumbersController < ApplicationController
-    def input
-    end
+  before_action :authenticate_user! 
+  
+  def input 
+  end
 
    def view
       @result = []

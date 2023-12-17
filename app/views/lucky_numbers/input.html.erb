@@ -8,7 +8,15 @@
     <% end %>
 
     <div id="result" class="my_form">"Ошибка! Некорректный ввод! Введите целое число в диапазоне от 0 до 999999. "</div>
+
+    <div class="my_form">  
+        <div>Мой аккаунт: <%= current_user.email %></div>
+        <div>Дата регистрации: <%= current_user.created_at %></div>
+    </div>
+
 </div>
+
+<%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete },  class: "btn btn-primary"%>
 
 <script>
     document.getElementById("result").style.display = "none";
